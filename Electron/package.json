@@ -1,5 +1,5 @@
 {
-  "name": "careconnect-electron-app",
+  "name": "careconnect-electron",
   "version": "0.0.1",
   "description": "The Electron code for the CareConnect frontend.",
   "license": "MIT",
