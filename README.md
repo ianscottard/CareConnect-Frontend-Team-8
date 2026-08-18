@@ -10,16 +10,15 @@ This is the repository for the CareConnect User Interface implementation for use
 The team charter can be found at the following link: https://umuc365-my.sharepoint.com/:w:/g/personal/vsood_student_umgc_edu/IQAzqldJc9OIT4xptp6mU8mPATRAUvpZWsxfeGpoIplOEbI?e=1UQcwP
 
 ## Setup
-The development environment includes: 
-- Visual Studio Code
-- Git and GitHub
-- Node.js and npm
-- Flutter and Dart
-- React Native and Expo
-- Electron
-- React and Vite
-- Android Studio
-- Accessibility testing tools
 
-Detailed installation and application setup instructions will be added as development continues.
+Once you have cloned this repo, you can set up each user interface with the instructions below. All documentation assumes access via Windows.
+
+### Flutter Mobile UI
+(Requires Flutter to be installed: https://docs.flutter.dev/get-started/install)
+
+### Expo Mobile UI
+
+### Electron Desktop UI
+
+### Vite Web UI
 
