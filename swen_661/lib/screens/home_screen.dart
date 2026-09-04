@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'appointments_screen.dart';
 import 'medications_screen.dart';
+import 'messages_screen.dart';
+import 'profile_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -112,10 +114,10 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 28),
 
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   QuickAccessTile(
-                    icon: Icons.calendar_month,
+                    icon: Icons.calendar_month_outlined,
                     label: 'Appointments',
                     onTap: () {
                       Navigator.push(
@@ -126,18 +128,25 @@ class HomeScreen extends StatelessWidget {
                       );
                     },
                   ),
+
                   QuickAccessTile(
                     icon: Icons.message_outlined,
                     label: 'Messages',
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MessagesScreen(),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
-
               const SizedBox(height: 44),
 
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   QuickAccessTile(
                     icon: Icons.medication_outlined,
@@ -155,7 +164,14 @@ class HomeScreen extends StatelessWidget {
                   QuickAccessTile(
                     icon: Icons.person_outline,
                     label: 'Profile',
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ProfileScreen(),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
@@ -174,6 +190,23 @@ class HomeScreen extends StatelessWidget {
               MaterialPageRoute(
                 builder: (context) => const AppointmentsScreen(),
               ),
+            );
+          } else if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const MessagesScreen()),
+            );
+          } else if (index == 3) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const MedicationsScreen(),
+              ),
+            );
+          } else if (index == 4) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ProfileScreen()),
             );
           }
         },

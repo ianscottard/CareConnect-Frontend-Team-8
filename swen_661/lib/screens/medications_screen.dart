@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'appointments_screen.dart';
+import 'messages_screen.dart';
+import 'home_screen.dart';
+import 'profile_screen.dart';
 
 class MedicationsScreen extends StatelessWidget {
   const MedicationsScreen({super.key});
@@ -14,7 +17,7 @@ class MedicationsScreen extends StatelessWidget {
 
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 20),
+          padding: const EdgeInsets.fromLTRB(22, 20, 22, 140),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -28,7 +31,7 @@ class MedicationsScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 20),
+              const SizedBox(height: 80),
 
               // Search field
               Semantics(
@@ -75,14 +78,13 @@ class MedicationsScreen extends StatelessWidget {
 
               const SizedBox(height: 12),
 
-              // Humira
+              /*// Humira
               const MedicationCard(
                 name: 'Humira',
                 dosage: '40 mg/0.4 ml',
                 instructions: 'Inject once every other week',
                 nextDose: 'Next Dose Mon 09/07',
-              ),
-
+              ), */
               const SizedBox(height: 20),
 
               // Taken Today heading
@@ -105,7 +107,7 @@ class MedicationsScreen extends StatelessWidget {
                 takenTime: 'Taken at 8:04 AM',
               ),
 
-              const SizedBox(height: 20),
+              const SizedBox(height: 80),
             ],
           ),
         ),
@@ -124,11 +126,27 @@ class MedicationsScreen extends StatelessWidget {
         // Home navigation
         onTap: (index) {
           if (index == 0) {
-            Navigator.pop(context);
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => const HomeScreen()),
+              (route) => false,
+            );
           } else if (index == 1) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => AppointmentsScreen()),
+              MaterialPageRoute(
+                builder: (context) => const AppointmentsScreen(),
+              ),
+            );
+          } else if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const MessagesScreen()),
+            );
+          } else if (index == 4) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ProfileScreen()),
             );
           }
         },

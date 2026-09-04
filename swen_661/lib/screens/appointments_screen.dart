@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'medications_screen.dart';
+import 'messages_screen.dart';
+import 'home_screen.dart';
+import 'profile_screen.dart';
 
 class AppointmentsScreen extends StatelessWidget {
   const AppointmentsScreen({super.key});
@@ -72,7 +75,16 @@ class AppointmentsScreen extends StatelessWidget {
         currentIndex: 1,
         onTap: (index) {
           if (index == 0) {
-            Navigator.pop(context);
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => const HomeScreen()),
+              (route) => false,
+            );
+          } else if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const MessagesScreen()),
+            );
           } else if (index == 3) {
             Navigator.push(
               context,
@@ -80,7 +92,13 @@ class AppointmentsScreen extends StatelessWidget {
                 builder: (context) => const MedicationsScreen(),
               ),
             );
+          } else if (index == 4) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ProfileScreen()),
+            );
           }
+          ;
         },
         type: BottomNavigationBarType.fixed,
         selectedItemColor: careConnectBlue,
