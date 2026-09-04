@@ -1,0 +1,7 @@
+# Flutter/Dart generated files
+build/
+swen_661/build/
+.dart_tool/
+swen_661/.dart_tool/
+.packages
+.pub/
