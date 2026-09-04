@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'appointments_screen.dart';
-import 'medications_screen.dart';
-import 'home_screen.dart';
-import 'doctor_messaging.dart';
-import 'profile_screen.dart';
-
 import 'package:go_router/go_router.dart';
 
 class MessagesScreen extends StatelessWidget {

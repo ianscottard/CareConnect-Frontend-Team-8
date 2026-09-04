@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'home_screen.dart';
-import 'appointments_screen.dart';
-import 'messages_screen.dart';
-import 'medications_screen.dart';
-import 'login_screen.dart';
-
 import 'package:go_router/go_router.dart';
 
 class ProfileScreen extends StatelessWidget {

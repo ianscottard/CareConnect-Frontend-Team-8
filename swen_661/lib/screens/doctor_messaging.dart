@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'messages_screen.dart';
-
 import 'package:go_router/go_router.dart';
 
 class DoctorMessagingScreen extends StatefulWidget {

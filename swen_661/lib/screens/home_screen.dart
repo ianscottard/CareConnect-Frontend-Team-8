@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'appointments_screen.dart';
-import 'medications_screen.dart';
+
 import 'messages_screen.dart';
-import 'profile_screen.dart';
 
 import 'package:go_router/go_router.dart';
 
