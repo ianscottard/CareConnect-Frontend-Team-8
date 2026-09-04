@@ -429,3 +429,7 @@ app.*.map.json
 
 ## Widget Preview related
 .widget_preview/
+
+# CareConnect nested Flutter project
+swen_661/build/
+swen_661/.dart_tool/
