@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'appointments_screen.dart';
+import 'medications_screen.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -114,7 +117,14 @@ class HomeScreen extends StatelessWidget {
                   QuickAccessTile(
                     icon: Icons.calendar_month,
                     label: 'Appointments',
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AppointmentsScreen(),
+                        ),
+                      );
+                    },
                   ),
                   QuickAccessTile(
                     icon: Icons.message_outlined,
@@ -132,8 +142,16 @@ class HomeScreen extends StatelessWidget {
                   QuickAccessTile(
                     icon: Icons.medication_outlined,
                     label: 'Medications',
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MedicationsScreen(),
+                        ),
+                      );
+                    },
                   ),
+
                   QuickAccessTile(
                     icon: Icons.person_outline,
                     label: 'Profile',
@@ -149,6 +167,16 @@ class HomeScreen extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: 0,
+        onTap: (index) {
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const AppointmentsScreen(),
+              ),
+            );
+          }
+        },
         selectedItemColor: careConnectBlue,
         unselectedItemColor: Colors.black,
         selectedFontSize: 11,
