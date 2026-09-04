@@ -16,157 +16,159 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 18),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 18),
 
-              const Text(
-                'CareConnect',
-                style: TextStyle(
-                  color: Color(0xFF2C67BA),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-
-              const SizedBox(height: 18),
-
-              const Text(
-                'Welcome back!',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-
-              const SizedBox(height: 30),
-
-              // Upcoming Appointment Card
-              Semantics(
-                label: 'Upcoming appointment with Doctor Smith, September 5 at 10 AM, Neurology',
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black54),
-                    borderRadius: BorderRadius.circular(8),
+                const Text(
+                  'CareConnect',
+                  style: TextStyle(
+                    color: Color(0xFF2C67BA),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.fromLTRB(28, 8, 20, 0),
-                        child: Text(
-                          'Upcoming Appointment',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
+                ),
+
+                const SizedBox(height: 18),
+
+                const Text(
+                  'Welcome back!',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                ),
+
+                const SizedBox(height: 30),
+
+                // Upcoming Appointment Card
+                Semantics(
+                  label: 'Upcoming appointment with Doctor Smith, September 5 at 10 AM, Neurology',
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black54),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.fromLTRB(28, 8, 20, 0),
+                          child: Text(
+                            'Upcoming Appointment',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
-                      ),
 
-                      const SizedBox(height: 4),
+                        const SizedBox(height: 4),
 
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 28),
-                        child: Text(
-                          'Dr. Smith\n'
-                          'September 5 | 10:00 AM\n'
-                          'Neurology',
-                          style: TextStyle(fontSize: 14, height: 1.25),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 28),
+                          child: Text(
+                            'Dr. Smith\n'
+                            'September 5 | 10:00 AM\n'
+                            'Neurology',
+                            style: TextStyle(fontSize: 14, height: 1.25),
+                          ),
                         ),
-                      ),
 
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Semantics(
-                          label: 'See appointment details',
-                          button: true,
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: careConnectBlue,
-                              foregroundColor: Colors.white,
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(4),
-                                  bottomRight: Radius.circular(7),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Semantics(
+                            label: 'See appointment details',
+                            button: true,
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: careConnectBlue,
+                                foregroundColor: Colors.white,
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(4),
+                                    bottomRight: Radius.circular(7),
+                                  ),
                                 ),
                               ),
-                            ),
-                            child: const Text(
-                              'See details',
-                              style: TextStyle(fontSize: 12),
+                              child: const Text(
+                                'See details',
+                                style: TextStyle(fontSize: 12),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
 
-              const SizedBox(height: 40),
+                const SizedBox(height: 40),
 
-              const Text(
-                'Quick access',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
+                const Text(
+                  'Quick access',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                ),
 
-              const SizedBox(height: 28),
+                const SizedBox(height: 28),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  QuickAccessTile(
-                    icon: Icons.calendar_month_outlined,
-                    label: 'Appointments',
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const AppointmentsScreen(),
-                        ),
-                      );
-                    },
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    QuickAccessTile(
+                      icon: Icons.calendar_month_outlined,
+                      label: 'Appointments',
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const AppointmentsScreen(),
+                          ),
+                        );
+                      },
+                    ),
 
-                  QuickAccessTile(
-                    icon: Icons.message_outlined,
-                    label: 'Messages',
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const MessagesScreen(),
-                        ),
-                      );
-                    },
-                  ),
-                ],
-              ),
-              const SizedBox(height: 44),
+                    QuickAccessTile(
+                      icon: Icons.message_outlined,
+                      label: 'Messages',
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MessagesScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 44),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  QuickAccessTile(
-                    icon: Icons.medication_outlined,
-                    label: 'Medications',
-                    onTap: () {
-                      context.go('/medications');
-                    },
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    QuickAccessTile(
+                      icon: Icons.medication_outlined,
+                      label: 'Medications',
+                      onTap: () {
+                        context.go('/medications');
+                      },
+                    ),
 
-                  QuickAccessTile(
-                    icon: Icons.person_outline,
-                    label: 'Profile',
-                    onTap: () {
-                      context.go('/profile');
-                    },
-                  ),
-                ],
-              ),
-            ],
+                    QuickAccessTile(
+                      icon: Icons.person_outline,
+                      label: 'Profile',
+                      onTap: () {
+                        context.go('/profile');
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

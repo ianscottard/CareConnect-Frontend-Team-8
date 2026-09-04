@@ -1,30 +1,81 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:swen_661/main.dart';
+import 'package:swen_661/app_router.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
+  testWidgets('CareConnect displays login screen', (WidgetTester tester) async {
     await tester.pumpWidget(const ProviderScope(child: CareConnectApp()));
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    await tester.pumpAndSettle();
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    expect(find.text('Login'), findsOneWidget);
+    expect(find.text('Forgot Password'), findsOneWidget);
+  });
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  testWidgets('Forgot Password navigates to reset password screen', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(const ProviderScope(child: CareConnectApp()));
+
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Forgot Password'));
+    await tester.pumpAndSettle();
+
+    expect(
+      find.text('Enter your email to receive a\npassword reset link:'),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('Login button navigates to home screen', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(const ProviderScope(child: CareConnectApp()));
+    appRouter.go('/login');
+    await tester.pumpAndSettle();
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Login'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Welcome back!'), findsOneWidget);
+  });
+
+  testWidgets('Medications screen displays active medications', (
+    WidgetTester tester,
+  ) async {
+    appRouter.go('/medications');
+
+    await tester.pumpWidget(const ProviderScope(child: CareConnectApp()));
+
+    await tester.pumpAndSettle();
+
+    expect(find.text('Lisinopril'), findsOneWidget);
+    expect(find.text('Fingolimod'), findsOneWidget);
+    expect(find.text('Mark as Taken'), findsNWidgets(2));
+  });
+
+  testWidgets('Profile screen displays profile information', (
+    WidgetTester tester,
+  ) async {
+    appRouter.go('/profile');
+
+    await tester.pumpWidget(const ProviderScope(child: CareConnectApp()));
+
+    await tester.pumpAndSettle();
+
+    expect(find.text('John Doe'), findsNWidgets(2));
+  });
+
+  testWidgets('Messages screen displays messages', (WidgetTester tester) async {
+    appRouter.go('/messages');
+
+    await tester.pumpWidget(const ProviderScope(child: CareConnectApp()));
+
+    await tester.pumpAndSettle();
+
+    expect(find.text('Messages'), findsWidgets);
   });
 }
