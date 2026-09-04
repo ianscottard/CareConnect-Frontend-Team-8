@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'screens/login_screen.dart';
+import 'app_router.dart';
 
 void main() {
   runApp(const CareConnectApp());
@@ -11,10 +11,10 @@ class CareConnectApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'CareConnect',
-      home: const LoginScreen(),
+      routerConfig: appRouter,
     );
   }
 }

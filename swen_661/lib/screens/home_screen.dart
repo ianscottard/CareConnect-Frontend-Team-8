@@ -5,6 +5,8 @@ import 'medications_screen.dart';
 import 'messages_screen.dart';
 import 'profile_screen.dart';
 
+import 'package:go_router/go_router.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -152,12 +154,7 @@ class HomeScreen extends StatelessWidget {
                     icon: Icons.medication_outlined,
                     label: 'Medications',
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const MedicationsScreen(),
-                        ),
-                      );
+                      context.go('/medications');
                     },
                   ),
 
@@ -165,12 +162,7 @@ class HomeScreen extends StatelessWidget {
                     icon: Icons.person_outline,
                     label: 'Profile',
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ProfileScreen(),
-                        ),
-                      );
+                      context.go('/profile');
                     },
                   ),
                 ],
@@ -185,29 +177,13 @@ class HomeScreen extends StatelessWidget {
         currentIndex: 0,
         onTap: (index) {
           if (index == 1) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const AppointmentsScreen(),
-              ),
-            );
+            context.go('/appointments');
           } else if (index == 2) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const MessagesScreen()),
-            );
+            context.go('/messages');
           } else if (index == 3) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const MedicationsScreen(),
-              ),
-            );
+            context.go('/medications');
           } else if (index == 4) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const ProfileScreen()),
-            );
+            context.go('/profile');
           }
         },
         selectedItemColor: careConnectBlue,

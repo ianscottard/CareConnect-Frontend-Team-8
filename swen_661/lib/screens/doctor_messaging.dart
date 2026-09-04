@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'messages_screen.dart';
 
+import 'package:go_router/go_router.dart';
+
 class DoctorMessagingScreen extends StatefulWidget {
   const DoctorMessagingScreen({super.key});
 
@@ -46,7 +48,7 @@ class _DoctorMessagingScreenState extends State<DoctorMessagingScreen> {
                     button: true,
                     child: IconButton(
                       onPressed: () {
-                        Navigator.pop(context);
+                        context.go('/messages');
                       },
                       icon: const Icon(
                         Icons.arrow_back,

@@ -6,6 +6,8 @@ import 'messages_screen.dart';
 import 'medications_screen.dart';
 import 'login_screen.dart';
 
+import 'package:go_router/go_router.dart';
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
@@ -109,13 +111,7 @@ class ProfileScreen extends StatelessWidget {
                   height: 48,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const LoginScreen(),
-                        ),
-                        (route) => false,
-                      );
+                      context.go('/login');
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: logoutGreen,
@@ -150,30 +146,13 @@ class ProfileScreen extends StatelessWidget {
 
         onTap: (index) {
           if (index == 0) {
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()),
-              (route) => false,
-            );
+            context.go('/home');
           } else if (index == 1) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const AppointmentsScreen(),
-              ),
-            );
+            context.go('/appointments');
           } else if (index == 2) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const MessagesScreen()),
-            );
+            context.go('/messages');
           } else if (index == 3) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const MedicationsScreen(),
-              ),
-            );
+            context.go('/medications');
           }
         },
 

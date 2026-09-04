@@ -5,6 +5,8 @@ import 'messages_screen.dart';
 import 'home_screen.dart';
 import 'profile_screen.dart';
 
+import 'package:go_router/go_router.dart';
+
 class MedicationsScreen extends StatelessWidget {
   const MedicationsScreen({super.key});
 
@@ -126,28 +128,13 @@ class MedicationsScreen extends StatelessWidget {
         // Home navigation
         onTap: (index) {
           if (index == 0) {
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()),
-              (route) => false,
-            );
+            context.go('/home');
           } else if (index == 1) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const AppointmentsScreen(),
-              ),
-            );
+            context.go('/appointments');
           } else if (index == 2) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const MessagesScreen()),
-            );
+            context.go('/messages');
           } else if (index == 4) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const ProfileScreen()),
-            );
+            context.go('/profile');
           }
         },
 

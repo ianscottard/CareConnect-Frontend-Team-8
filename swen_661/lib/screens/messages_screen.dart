@@ -6,6 +6,8 @@ import 'home_screen.dart';
 import 'doctor_messaging.dart';
 import 'profile_screen.dart';
 
+import 'package:go_router/go_router.dart';
+
 class MessagesScreen extends StatelessWidget {
   const MessagesScreen({super.key});
 
@@ -40,12 +42,7 @@ class MessagesScreen extends StatelessWidget {
                     height: 48,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => DoctorMessagingScreen(),
-                          ),
-                        );
+                        context.go('/doctor-messaging');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: careConnectBlue,
@@ -95,30 +92,13 @@ class MessagesScreen extends StatelessWidget {
         currentIndex: 2,
         onTap: (index) {
           if (index == 0) {
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()),
-              (route) => false,
-            );
+            context.go('/home');
           } else if (index == 1) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const AppointmentsScreen(),
-              ),
-            );
+            context.go('/appointments');
           } else if (index == 3) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const MedicationsScreen(),
-              ),
-            );
+            context.go('/medications');
           } else if (index == 4) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const ProfileScreen()),
-            );
+            context.go('/profile');
           }
         },
         type: BottomNavigationBarType.fixed,

@@ -5,6 +5,8 @@ import 'messages_screen.dart';
 import 'home_screen.dart';
 import 'profile_screen.dart';
 
+import 'package:go_router/go_router.dart';
+
 class AppointmentsScreen extends StatelessWidget {
   const AppointmentsScreen({super.key});
 
@@ -75,30 +77,14 @@ class AppointmentsScreen extends StatelessWidget {
         currentIndex: 1,
         onTap: (index) {
           if (index == 0) {
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()),
-              (route) => false,
-            );
+            context.go('/home');
           } else if (index == 2) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const MessagesScreen()),
-            );
+            context.go('/messages');
           } else if (index == 3) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const MedicationsScreen(),
-              ),
-            );
+            context.go('/medications');
           } else if (index == 4) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const ProfileScreen()),
-            );
+            context.go('/profile');
           }
-          ;
         },
         type: BottomNavigationBarType.fixed,
         selectedItemColor: careConnectBlue,
