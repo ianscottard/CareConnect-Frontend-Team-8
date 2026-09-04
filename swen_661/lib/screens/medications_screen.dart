@@ -6,14 +6,19 @@ import 'home_screen.dart';
 import 'profile_screen.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MedicationsScreen extends StatelessWidget {
+import '../providers/medication_provider.dart';
+
+class MedicationsScreen extends ConsumerWidget {
   const MedicationsScreen({super.key});
 
   static const Color careConnectBlue = Color(0xFF2C67BA);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final takenMedications = ref.watch(medicationTakenProvider);
+
     return Scaffold(
       backgroundColor: Colors.white,
 
@@ -61,22 +66,37 @@ class MedicationsScreen extends StatelessWidget {
               const SizedBox(height: 16),
 
               // Lisinopril
-              const MedicationCard(
-                name: 'Lisinopril',
-                dosage: '10 mg',
-                instructions: 'Take 1 tablet once daily',
-                nextDose: 'Next Dose 09:00 AM',
-              ),
+              takenMedications.contains('Lisinopril')
+                  ? const TakenMedicationCard(
+                      name: 'Lisinopril',
+                      dosage: '10 mg',
+                      instructions: 'Take 1 tablet once daily',
+                      takenTime: 'Taken just now',
+                    )
+                  : const MedicationCard(
+                      name: 'Lisinopril',
+                      dosage: '10 mg',
+                      instructions: 'Take 1 tablet once daily',
+                      nextDose: 'Next Dose 09:00 AM',
+                    ),
 
               const SizedBox(height: 12),
 
               // Fingolimod
-              const MedicationCard(
-                name: 'Fingolimod',
-                dosage: '0.5 mg',
-                instructions: 'Take 1 tablet once daily',
-                nextDose: 'Next Dose 09:00 AM',
-              ),
+              // Fingolimod
+              takenMedications.contains('Fingolimod')
+                  ? const TakenMedicationCard(
+                      name: 'Fingolimod',
+                      dosage: '0.5 mg',
+                      instructions: 'Take 1 tablet once daily',
+                      takenTime: 'Taken just now',
+                    )
+                  : const MedicationCard(
+                      name: 'Fingolimod',
+                      dosage: '0.5 mg',
+                      instructions: 'Take 1 tablet once daily',
+                      nextDose: 'Next Dose 09:00 AM',
+                    ),
 
               const SizedBox(height: 12),
 
@@ -166,7 +186,7 @@ class MedicationsScreen extends StatelessWidget {
 }
 
 // Active medication card
-class MedicationCard extends StatelessWidget {
+class MedicationCard extends ConsumerWidget {
   final String name;
   final String dosage;
   final String instructions;
@@ -181,7 +201,7 @@ class MedicationCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Semantics(
       container: true,
       label: '$name, $dosage, $instructions, $nextDose',
@@ -232,13 +252,15 @@ class MedicationCard extends StatelessWidget {
                 const SizedBox(width: 10),
 
                 Semantics(
-                  label: 'See details for $name',
+                  label: 'Mark $name as taken',
                   button: true,
                   child: SizedBox(
                     height: 48,
                     child: ElevatedButton(
                       onPressed: () {
-                        // Medication details screen will be connected later.
+                        ref
+                            .read(medicationTakenProvider.notifier)
+                            .markAsTaken(name);
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: MedicationsScreen.careConnectBlue,
@@ -249,7 +271,7 @@ class MedicationCard extends StatelessWidget {
                         ),
                       ),
                       child: const Text(
-                        'See details',
+                        'Mark as Taken',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w600,
