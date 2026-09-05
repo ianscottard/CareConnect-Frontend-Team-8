@@ -36,7 +36,7 @@ class MessagesScreen extends StatelessWidget {
                     height: 48,
                     child: ElevatedButton(
                       onPressed: () {
-                        context.go('/doctor-messaging');
+                        context.go('/new-message');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: careConnectBlue,
@@ -189,7 +189,7 @@ class MessageCard extends StatelessWidget {
                     height: 48,
                     child: ElevatedButton(
                       onPressed: () {
-                        // Message details screen can be connected later.
+                        context.go('/doctor-messaging');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: MessagesScreen.careConnectBlue,
