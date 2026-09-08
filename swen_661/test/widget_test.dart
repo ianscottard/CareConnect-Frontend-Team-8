@@ -78,4 +78,21 @@ void main() {
 
     expect(find.text('Messages'), findsWidgets);
   });
+
+  testWidgets('New Message button navigates to new message screen', (
+    WidgetTester tester,
+  ) async {
+    appRouter.go('/messages');
+
+    await tester.pumpWidget(const ProviderScope(child: CareConnectApp()));
+
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('+ New message'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('New Message'), findsOneWidget);
+    expect(find.text('Enter provider name'), findsOneWidget);
+    expect(find.text('Send Message'), findsOneWidget);
+  });
 }

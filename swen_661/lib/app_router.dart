@@ -8,6 +8,7 @@ import 'screens/medications_screen.dart';
 import 'screens/messages_screen.dart';
 import 'screens/doctor_messaging.dart';
 import 'screens/profile_screen.dart';
+import 'screens/new_message_screen.dart';
 
 final GoRouter appRouter = GoRouter(
   initialLocation: '/login',
@@ -34,6 +35,10 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/messages',
       builder: (context, state) => const MessagesScreen(),
+    ),
+    GoRoute(
+      path: '/new-message',
+      builder: (context, state) => const NewMessageScreen(),
     ),
 
     GoRoute(
