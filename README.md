@@ -48,7 +48,7 @@ Once you have cloned this repo, you can set up each user interface with the inst
 - Run Vite with `npm run dev` to start the local web server
 - Navigate to the shown localhost page in your browser to access the web interface
 
-# Part 3: Documentation
+# Flutter Documentation
 
 **Team 8:** Ian Ard, Lucrece Nsoesie, Vindhya Sood
 
