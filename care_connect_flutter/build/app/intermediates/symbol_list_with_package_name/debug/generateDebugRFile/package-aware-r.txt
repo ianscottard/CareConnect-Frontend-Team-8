@@ -1,0 +1,5 @@
+com.example.care_connect_flutter
+drawable launch_background
+mipmap ic_launcher
+style LaunchTheme
+style NormalTheme
