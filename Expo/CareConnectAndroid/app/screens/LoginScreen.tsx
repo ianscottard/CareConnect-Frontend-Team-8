@@ -1,106 +1,76 @@
 import { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
-import {
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
-} from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import type RootStackParamList from '../navigation/types';
 
-export default function LoginScreen({ navigation }: any) {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
-    return (
-        <View style={styles.container}>
-            <Text style={styles.title}>CareConnect</Text>
+export default function LoginScreen({ navigation }: Props) {
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-            <Text style={styles.label}>Email</Text>
-            <TextInput
-                style={styles.input}
-                placeholder="Enter your email"
-                value={email}
-                onChangeText={setEmail}
-                keyboardType="email-address"
-                autoCapitalize="none"
-                accessibilityLabel="Email address"
-            />
-
-            <Text style={styles.label}>Password</Text>
-            <TextInput
-                style={styles.input}
-                placeholder="Enter your password"
-                value={password}
-                onChangeText={setPassword}
-                secureTextEntry
-                accessibilityLabel="Password"
-            />
-
-            <TouchableOpacity
-                onPress={() => navigation.navigate('ResetPassword')}
-                accessibilityRole="button"
-                accessibilityLabel="Forgot Password"
-            >
-                <Text style={styles.forgotPassword}>Forgot Password?</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-                style={styles.loginButton}
-                onPress={() => navigation.navigate('Home')}
-                accessibilityRole="button"
-                accessibilityLabel="Login"
-            >
-                <Text style={styles.loginButtonText}>Login</Text>
-            </TouchableOpacity>
+  return (
+    <View style={styles.container}>
+      <View style={styles.form}>
+        <TextInput
+          style={styles.input}
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+          autoCapitalize="none"
+          accessibilityLabel="Email address"
+          placeholder="E-mail"
+        />
+        <View style={styles.passwordWrap}>
+          <TextInput
+            style={styles.passwordInput}
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry={!passwordVisible}
+            accessibilityLabel="Password"
+            placeholder="Password"
+          />
+          <TouchableOpacity
+            style={styles.eye}
+            onPress={() => setPasswordVisible((v) => !v)}
+            accessibilityRole="button"
+            accessibilityLabel={passwordVisible ? 'Hide password' : 'Show password'}
+          >
+            <Ionicons name={passwordVisible ? 'eye-off-outline' : 'eye-outline'} size={23} color="#333" />
+          </TouchableOpacity>
         </View>
-    );
+        <TouchableOpacity
+          style={styles.forgot}
+          onPress={() => navigation.navigate('ResetPassword')}
+          accessibilityRole="button"
+          accessibilityLabel="Forgot password"
+        >
+          <Text style={styles.forgotText}>Forgot Password</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.loginButton}
+          onPress={() => navigation.replace('Home')}
+          accessibilityRole="button"
+          accessibilityLabel="Login"
+        >
+          <Text style={styles.buttonText}>Login</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#FFFFFF',
-        paddingHorizontal: 24,
-        justifyContent: 'center',
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: '600',
-        color: '#2C67BA',
-        textAlign: 'center',
-        marginBottom: 40,
-    },
-
-    label: {
-        fontSize: 16,
-        fontWeight: '600',
-        marginBottom: 8,
-    },
-    input: {
-        borderWidth: 1,
-        borderColor: '#CCCCCC',
-        borderRadius: 8,
-        padding: 14,
-        fontSize: 16,
-        marginBottom: 18,
-    },
-    forgotPassword: {
-        color: '#2C67BA',
-        fontSize: 16,
-        fontWeight: '600',
-        textAlign: 'right',
-        marginBottom: 24,
-    },
-    loginButton: {
-        backgroundColor: '#2C67BA',
-        borderRadius: 8,
-        paddingVertical: 14,
-        alignItems: 'center',
-    },
-    loginButtonText: {
-        color: '#FFFFFF',
-        fontSize: 16,
-        fontWeight: '600',
-    },
+  container: { flex: 1, backgroundColor: '#FFFFFF' },
+  form: { paddingHorizontal: 32, paddingTop: 220 },
+  input: { height: 50, borderWidth: 1, borderColor: '#777', borderRadius: 4, paddingHorizontal: 14, fontSize: 16, marginBottom: 20 },
+  passwordWrap: { position: 'relative', marginBottom: 8 },
+  passwordInput: { height: 50, borderWidth: 1, borderColor: '#777', borderRadius: 4, paddingHorizontal: 14, paddingRight: 48, fontSize: 16 },
+  eye: { position: 'absolute', right: 10, top: 12, padding: 2 },
+  forgot: { alignSelf: 'flex-end', minHeight: 40, justifyContent: 'center' },
+  forgotText: { color: '#2C67BA', fontSize: 14, fontWeight: '500' },
+  loginButton: { height: 48, backgroundColor: '#2C67BA', borderRadius: 4, alignItems: 'center', justifyContent: 'center', marginTop: 12 },
+  buttonText: { color: '#FFFFFF', fontSize: 16, fontWeight: '600' },
 });
