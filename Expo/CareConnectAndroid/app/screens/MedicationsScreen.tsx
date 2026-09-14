@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useMedicationContext } from '../context/MedicationContext';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type RootStackParamList from '../navigation/types';
@@ -7,7 +8,7 @@ import BottomNav from '../components/BottomNav';
 type Props = NativeStackScreenProps<RootStackParamList, 'Medications'>;
 
 export default function MedicationsScreen({ navigation }: Props) {
-  const [taken, setTaken] = useState<string[]>([]);
+  const { takenMedications, markAsTaken } = useMedicationContext();
   const [search, setSearch] = useState('');
 
   const active = [
@@ -28,10 +29,10 @@ export default function MedicationsScreen({ navigation }: Props) {
           accessibilityLabel="Search medications"
         />
         {filtered.map((med) =>
-          taken.includes(med.name) ? (
+          takenMedications.includes(med.name) ? (
             <TakenCard key={med.name} name={med.name} dosage={med.dosage} time="Taken just now" />
           ) : (
-            <MedicationCard key={med.name} name={med.name} dosage={med.dosage} onTaken={() => setTaken((v) => [...v, med.name])} />
+            <MedicationCard key={med.name} name={med.name} dosage={med.dosage} onTaken={() => markAsTaken(med.name)} />
           )
         )}
         <Text style={styles.takenHeading}>TAKEN TODAY</Text>
