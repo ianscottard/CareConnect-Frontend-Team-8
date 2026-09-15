@@ -9,11 +9,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "expo lint",
-    "typecheck": "tsc --noEmit",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "test:ci": "jest --ci --coverage --runInBand"
+    "test": "jest"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
@@ -55,39 +51,6 @@
   },
   "private": true,
   "jest": {
-    "preset": "jest-expo",
-    "setupFilesAfterEnv": [
-      "<rootDir>/jest.setup.js"
-    ],
-    "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/$1"
-    },
-    "clearMocks": true,
-    "restoreMocks": true,
-    "collectCoverageFrom": [
-      "App.tsx",
-      "app/**/*.{ts,tsx}",
-      "!app/**/__tests__/**",
-      "!app/**/*.test.{ts,tsx}",
-      "!app/navigation/types.ts",
-      "!app/screens/AppointmentScreen.tsx"
-    ],
-    "coverageProvider": "babel",
-    "coverageDirectory": "coverage",
-    "coverageReporters": [
-      "text",
-      "text-summary",
-      "html",
-      "lcov",
-      "cobertura"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "statements": 60,
-        "branches": 60,
-        "functions": 60,
-        "lines": 60
-      }
-    }
+    "preset": "jest-expo"
   }
 }

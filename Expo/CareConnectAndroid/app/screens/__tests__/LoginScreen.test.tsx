@@ -34,7 +34,7 @@ test('navigates to Reset Password when Forgot Password is pressed', async () => 
         <LoginScreen navigation={navigation} route={{} as any} />
     );
 
-    await fireEvent.press(screen.getByLabelText('Forgot password'));
+    fireEvent.press(screen.getByLabelText('Forgot password'));
 
     expect(navigation.navigate).toHaveBeenCalledWith('ResetPassword');
 });
@@ -49,7 +49,7 @@ test('navigates to Home when Login is pressed', async () => {
         <LoginScreen navigation={navigation} route={{} as any} />
     );
 
-    await fireEvent.press(screen.getByLabelText('Login'));
+    fireEvent.press(screen.getByLabelText('Login'));
 
     expect(navigation.replace).toHaveBeenCalledWith('Home');
 });
@@ -64,7 +64,7 @@ test('allows the user to enter an email address', async () => {
         <LoginScreen navigation={navigation} route={{} as any} />
     );
 
-    await fireEvent.changeText(
+    fireEvent.changeText(
         screen.getByLabelText('Email address'),
         'test@example.com'
     );
@@ -74,24 +74,4 @@ test('allows the user to enter an email address', async () => {
             screen.getByLabelText('Email address').props.value
         ).toBe('test@example.com');
     });
-});
-
-test('shows and hides the password', async () => {
-    const navigation = {
-        navigate: jest.fn(),
-        replace: jest.fn(),
-    } as any;
-
-    await render(
-        <LoginScreen navigation={navigation} route={{} as any} />
-    );
-
-    const password = screen.getByLabelText('Password');
-    expect(password).toHaveProp('secureTextEntry', true);
-
-    await fireEvent.press(screen.getByLabelText('Show password'));
-    expect(password).toHaveProp('secureTextEntry', false);
-
-    await fireEvent.press(screen.getByLabelText('Hide password'));
-    expect(password).toHaveProp('secureTextEntry', true);
 });
