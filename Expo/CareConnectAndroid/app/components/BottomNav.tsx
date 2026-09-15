@@ -1,11 +1,11 @@
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import type { NavigationProp } from '@react-navigation/native';
 import type RootStackParamList from '../navigation/types';
 
 type Props = {
   current: 'Home' | 'Appointments' | 'Messages' | 'Medications' | 'Profile';
-  navigation: NativeStackNavigationProp<RootStackParamList>;
+  navigation: Pick<NavigationProp<RootStackParamList>, 'navigate'>;
 };
 
 const items = [

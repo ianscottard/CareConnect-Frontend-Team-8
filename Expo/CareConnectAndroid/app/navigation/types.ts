@@ -4,7 +4,7 @@
  * This interface is the default export so screens and navigation helpers can
  * import it consistently while still allowing named type imports if needed.
  */
-export default interface RootStackParamList {
+type RootStackParamList = {
   Login: undefined;
   ResetPassword: undefined;
   Home: undefined;
@@ -14,4 +14,6 @@ export default interface RootStackParamList {
   NewMessage: undefined;
   DoctorMessaging: undefined;
   Profile: undefined;
-}
+};
+
+export default RootStackParamList;
