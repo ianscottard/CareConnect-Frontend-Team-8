@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
+import { addMedication, removeMedication } from '../utils/medicationUtils';
 
 type MedicationContextType = {
     takenMedications: string[];
@@ -15,15 +16,13 @@ export function MedicationProvider({ children }: { children: ReactNode }) {
 
     const markAsTaken = (medicationName: string) => {
         setTakenMedications((current) =>
-            current.includes(medicationName)
-                ? current
-                : [...current, medicationName]
+            addMedication(current, medicationName)
         );
     };
 
     const resetMedication = (medicationName: string) => {
         setTakenMedications((current) =>
-            current.filter((name) => name !== medicationName)
+            removeMedication(current, medicationName)
         );
     };
 
