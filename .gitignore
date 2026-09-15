@@ -433,3 +433,4 @@ app.*.map.json
 # CareConnect nested Flutter project
 swen_661/build/
 swen_661/.dart_tool/
+swen_661/devtools_options.yaml
